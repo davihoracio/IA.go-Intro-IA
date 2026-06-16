@@ -49,7 +49,7 @@ class CSPAgent:
             xj_domain = self.domains[xj]
 
         for x in set(self.domains[xi]):
-            if not any(x == y for y in xj_domain):
+            if x not in xj_domain:
                 self.domains[xi].discard(x)
                 revised = True
 

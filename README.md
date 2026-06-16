@@ -253,7 +253,7 @@ Saída exemplo:
 | **Médio** | 30 / 81 (37.0%) | 51 / 81 (63.0%) | Menos dicas, busca mais extensa |
 | **Difícil** | 23 / 81 (28.4%) | 58 / 81 (71.6%) | Puzzle próximo do mínimo de dicas |
 
-Os puzzles estão definidos em `main.py` (modo terminal) e `interface/gui.py` (modo GUI) e são idênticos entre os dois arquivos.
+Os puzzles estão definidos em `environment/puzzles.py` e importados tanto pelo modo terminal quanto pela GUI.
 
 ---
 

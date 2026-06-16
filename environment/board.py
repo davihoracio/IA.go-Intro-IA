@@ -75,18 +75,19 @@ class SudokuBoard:
 
         return True
 
-    def count_conflicts(self) -> int:
+    @staticmethod
+    def count_conflicts(grid: list[list[int]]) -> int:
         conflicts = 0
 
         for i in range(9):
-            row = [self.grid[i][j] for j in range(9)]
-            col = [self.grid[j][i] for j in range(9)]
+            row = [grid[i][j] for j in range(9)]
+            col = [grid[j][i] for j in range(9)]
             conflicts += (9 - len(set(row)))
             conflicts += (9 - len(set(col)))
 
         for box_r in range(0, 9, 3):
             for box_c in range(0, 9, 3):
-                box = [self.grid[box_r + r][box_c + c] for r in range(3) for c in range(3)]
+                box = [grid[box_r + r][box_c + c] for r in range(3) for c in range(3)]
                 conflicts += (9 - len(set(box)))
 
         return conflicts
