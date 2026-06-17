@@ -4,6 +4,7 @@ from metrics.tracker import Tracker
 
 
 class CSPAgent:
+    # 1. Modelagem CSP e Inicialização
     def __init__(self, board: SudokuBoard, tracker: Tracker):
         self.board   = board
         self.tracker = tracker
@@ -21,6 +22,7 @@ class CSPAgent:
             for var in self.variables
         }
 
+    # 2. Propagação de Restrições (AC-3)
     def ac3(self) -> bool:
         queue = deque(
             (xi, xj)
@@ -55,6 +57,7 @@ class CSPAgent:
 
         return revised
 
+    # 3. Motor de Busca e Backtracking
     def solve(self) -> list[list[int]] | None:
         self.tracker.start()
 
@@ -105,6 +108,7 @@ class CSPAgent:
 
         return None
 
+    # 4. Heurísticas de Otimização (MRV e LCV)
     def _select_unassigned_variable(self, assignment: dict) -> tuple:
         unassigned = [v for v in self.variables if v not in assignment]
 
@@ -133,6 +137,7 @@ class CSPAgent:
 
         return sorted(self.domains[var], key=count_constraints)
 
+    # 5. Validação e Captura de Estado
     def _is_consistent(self, var: tuple, value: int, assignment: dict) -> bool:
         for neighbor in self.constraints[var]:
             if neighbor in assignment and assignment[neighbor] == value:

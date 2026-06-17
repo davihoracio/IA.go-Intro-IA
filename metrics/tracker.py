@@ -1,6 +1,7 @@
 import time
 
 class Tracker:
+    # 1. Introdução e Ciclo de Vida
     def __init__(self):
         self.nodes            = 0
         self.backtracks       = 0
@@ -22,21 +23,24 @@ class Tracker:
         self.end_time = time.time()
         self.solved   = solved
 
+    # 2. Coleta Contínua de Esforço Computacional
     def increment_nodes(self):
         self.nodes += 1
 
     def increment_backtracks(self):
         self.backtracks += 1
 
+    # 3. Captura de Histórico Visual
     def record_step(self, grid: list[list[int]]):
         self.steps.append([row[:] for row in grid])
 
+    # 4. Consolidação e Exportação de Dados
     def elapsed(self) -> float:
         if self.start_time is None:
             return 0.0
         end = self.end_time if self.end_time else time.time()
         return round(end - self.start_time, 4)
-
+    
     def summary(self) -> dict:
         return {
             "solved"          : self.solved,

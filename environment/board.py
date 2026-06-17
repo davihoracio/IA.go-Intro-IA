@@ -1,8 +1,10 @@
 class SudokuBoard:
+    # 1. Representação Matricial e a Regra de Imutabilidade
     def __init__(self, puzzle: list[list[int]]):
         self.initial = [row[:] for row in puzzle]
         self.grid    = [row[:] for row in puzzle]
 
+    # 2. Mapeamento do Espaço de Estados
     def get_empty_cells(self) -> list[tuple[int, int]]:
         return [
             (i, j)
@@ -38,6 +40,7 @@ class SudokuBoard:
 
         return neighbors
 
+    # 3. Validação Regrada vs. Heurística de Custo
     def is_valid_value(self, row: int, col: int, num: int) -> bool:
         if num in self.grid[row]:
             return False
@@ -92,6 +95,7 @@ class SudokuBoard:
 
         return conflicts
 
+    # 4. Interface de Modificação e Estado
     def apply_solution(self, assignment: dict[tuple[int, int], int]):
         for (i, j), val in assignment.items():
             self.grid[i][j] = val
